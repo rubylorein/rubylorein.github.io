@@ -30,7 +30,12 @@ $(function() {
 			var $text = $("<p>");
 
 			$date.append($("<b>").text(getDateText(item.date)));
-			$title.append($("<a>").attr("href", item.link).text(item.title));
+
+			if (item.link.length > 0)
+				$title.append($("<a>").attr("href", item.link).text(item.title));
+			else
+				$title.text(item.title);
+
 			$text.text(item.text);
 			$item.append($date, $title, $text);
 

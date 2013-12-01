@@ -275,7 +275,7 @@ html,body {
 .sobre-ruby h2, .sobre-ruby p { color:#544300; font-family:"Enriqueta","serif"; font-size:14px; margin-bottom:20px; }
 .sobre-ruby p { line-height: 2em; }
 .sobre-ruby p.last { margin-bottom:0; }
-.sobre-ruby h2 { font-family:"Kelly Slab","serif"; font-size:19px; font-weight:normal; }
+.sobre-ruby h2 { font-family:"Kelly Slab","serif"; font-size:19px; font-weight:normal; text-align: center; }
 
 .contacto .icon-row { margin-top:68px; height:172px; }
 .contacto .icon { display:block; float:left; width:172px; height:172px; }
