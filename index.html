@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+	<base href="http://www.rubylorein.com/" />
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 	<link rel="icon" href="favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
@@ -11,137 +12,104 @@
 	<meta property="og:type" content="website"/>
 	<meta property="og:url" content="http://www.rubylorein.com/"/>
 	<meta property="og:site_name" content="Ruby Lou Lörein"/>
-	<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Signika:n,b,i,bi|&amp;subset=latin">
-	<style type="text/css">
-		img { border:0 none; }
-		h1,h2,p { margin:0; padding:0; }
-		a { text-decoration:none; }
-		a:hover { text-decoration:underline; }
+	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="js/general.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/jquery.mCustomScrollbar.css" />
+	<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="js/ajax-paging.js"></script>
+	<script type="text/javascript" src="js/inicio.js"></script>
 
-		html, body {
-			margin:0;
-			padding:0;
-			width: 100%;
-			height: 100%;
-			background: #A37448 url('images/background.jpg') repeat left top;
-			background-size: 200%;
-		}
-
-		.bar {
-			background-color: rgba(68, 28, 8, 0.6);
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7F441C08, endColorstr=#7F441C08);
-			text-align: center;
-		}
-
-		.top, .bottom, .middle { position: absolute; left: 0; right: 0; min-width: 980px; }
-		.top.bar { top: 0; }
-		.bottom.bar { bottom: 0; }
-
-		.bottom span {
-			display: inline-block;
-			font: normal normal normal 11px/1.4em signika, sans-serif;
-			vertical-align: middle;
-			color: rgb(255, 238, 170);
-			margin-left: 15px;
-			margin-top: 2px;
-		}
-
-		.bar > div {
-			width: 980px;
-			padding: 15px 0;
-			display: inline-block;
-			position: relative;
-		}
-
-		.bar > div > img {
-			vertical-align: middle;
-		}
-
-		.top.bar > div, .bottom.bar > div {
-			text-align: left;
-		}
-
-		.middle { top: 0; bottom: 0; }
-		.middle:before { content: ""; display: inline-block; width: 0px; height: 100%; vertical-align: middle; }
-
-		.middle .bar {
-			display: inline-block;
-			width: 100%;
-			vertical-align: middle;
-			box-shadow: 0 0 30px 5px #000;
-		}
-
-		.middle .bar > div {
-			background-color: rgba(255, 238, 170, 0.7);
-			filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#B2FFEEAA, endColorstr=#B2FFEEAA);
-		}
-
-		.middle h1 {
-			color: rgb(68, 28, 8);
-			font: normal normal normal 90px/1.4em signika, sans-serif;
-			font-weight: 700;
-		}
-
-		.middle h2 {
-			color: rgb(169, 135, 0);
-			font: normal normal normal 18px/1.4em signika, sans-serif;
-		}
-
-		.middle p {
-			color: rgb(84, 67, 0);
-			font: normal normal normal 18px/1.4em signika, sans-serif;
-		}
-
-		.networks {
-			position: absolute;
-			top: 5px;
-			bottom: 0;
-			right: 0;
-			z-index: 1;
-		}
-
-		.networks:before {
-			content: "";
-			display: inline-block;
-			width: 0px;
-			height: 100%;
-			vertical-align: middle;
-		}
-
-		.networks a {
-			display: inline-block;
-			vertical-align: middle;
-			margin-left: 15px;
-		}
-
-	</style>
 </head>
 <body>
-	<div class="top bar">
-		<div>
-			<div class="networks">
-				<a target="_blank" title="Facebook" href="https://www.facebook.com/rubylorein"><img src="images/icon-facebook-white.png" /></a>
-				<a target="_blank" title="Twitter" href="https://twitter.com/rubylorein"><img src="images/icon-twitter-white.png" /></a>
-				<a target="_blank" title="Google+" href="https://plus.google.com/117391603862172834209"><img src="images/icon-google-plus-white.png" /></a>
-			</div>
-			<img src="images/RLL.png" />
+	<div class="header">
+		<div class="header-line"></div>
+		<div class="top">
+			<img src="images/ruby-top.jpg" />
+			<img class="logo" src="images/logo.png" />
+		</div>
+		<div class="menu" data-selected="inicio">
+			<a class="item" id="inicio" href="./">INICIO</a>
+			<a class="item" id="escritos" href="escritos/">ESCRITOS</a>
+			<a class="item" id="el-libro" href="el-libro/" data-url="http://www.rubylorein.com/escritos/alas-de-piedra">EL LIBRO</a>
+			<a class="item" id="sobre-ruby" href="sobre-ruby/">SOBRE RUBY</a>
+			<a class="item" id="contacto" href="contacto/">CONTACTO</a>
 		</div>
 	</div>
-	<div class="middle"><div class="bar">
-		<div>
-			<h2>1° DE DICIEMBRE DE 2013</h2>
-			<h1>RUBY LOU LÖREIN</h1>
-			<p>Antes del final, un puente hacia lo eterno</p>
+
+	<div class="content">
+		<div class="fadeline"></div>
+<div class="inicio">
+	<div class="topbox box">
+		<div class="box-content">
+			<div class="topbox-fadeline vertical-fadeline"></div>
+			<div class="left">
+				<div class="text-1">MANCHAS</div>
+				<div class="text-2">DE LITERATURA</div>
+				<div class="text-3">EN EL PAPEL DE LA<br />RUTINA</div>
+			</div>
+			<div class="right"><div class="text-4">Novelas, cuentos, escritos. Relatos de la marcha de una vida por el mundo actualizados semanalmente.</div></div>
 		</div>
-	</div></div>
-	<div class="bottom bar">
-		<div>
+	</div>
+
+	<div>
+		<div class="side-content">
+			<div class="side-top main-box">
+				<div>
+					<div class="text-4">CUANDO LAS PALABRAS<br />CALLAN, LA</div>
+					<div class="text-3">VERDAD</div>
+					<div class="text-4">GRITA</div>
+				</div>
+			</div>
+			<div class="side-bottom main-box">
+				<div class="text-4">EL LIBRO</div>
+				<p>En este momento en El Libro: &quot;Alas de Piedra&quot;, actualizado por última vez el 1 de diciembre de 2013.</p>
+				<a class="button" href="el-libro/">Ir al Libro</a>
+			</div>
+		</div>
+		<div class="main-box updates">
+			<div class="networks">
+				<a target="_blank" title="Facebook" href="https://www.facebook.com/rubylorein"><img src="images/icon-facebook-black.png" /></a>
+				<a target="_blank" title="Twitter" href="https://twitter.com/rubylorein"><img src="images/icon-twitter-black.png" /></a>
+				<a target="_blank" title="Google+" href="https://plus.google.com/117391603862172834209"><img src="images/icon-google-plus-black.png" /></a>
+			</div>
+			<h1>ACTUALIZACIONES</h1>
+			<div class="updates-list"></div>
+			<div class="pages"></div>
+		</div>
+	</div>
+
+	<div class="fadeline"></div>
+
+	<div class="bottombox box mailhref">
+		<div class="box-content">
+			<div class="left">
+				<a class="text-3" target="_blank" href="https://www.facebook.com/rubylorein">LIKE EN</a>
+				<a class="text-2" target="_blank" href="https://www.facebook.com/rubylorein">FACEBOOK</a>
+				<a class="text-4" target="_blank" href="https://www.facebook.com/rubylorein">Enterate de las novedades</a>
+			</div>
+			<div class="right">
+				<a class="text-3 mailhref-target" target="_blank" href="#">CONTACTO</a>
+				<a class="text-2 mailhref-target" target="_blank" href="#">ESCRIBE A</a>
+				<a class="text-4 mailhref-target" target="_blank" href="#"><span></span></a>
+			</div>
+			<div class="middle">
+				<div class="border-left"></div>
+				<div class="RLL" title="Ruby Lou Lörein"></div>
+				<div class="border-right"></div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+	</div>
+</div>
+		<div class="fadeline"></div>
+		<div class="footer">
 			<div class="networks">
 				<a target="_blank" title="Facebook" href="https://www.facebook.com/rubylorein"><img src="images/icon-facebook-white.png" /></a>
 				<a target="_blank" title="Twitter" href="https://twitter.com/rubylorein"><img src="images/icon-twitter-white.png" /></a>
 				<a target="_blank" title="Google+" href="https://plus.google.com/117391603862172834209"><img src="images/icon-google-plus-white.png" /></a>
 			</div>
-			<img src="images/RLL.png" />
 			<span>© 2013 by RLL. All rights reserved.</span>
 		</div>
 	</div>

@@ -1,0 +1,27 @@
+@font-face {
+	font-family: 'Enriqueta';
+	font-style: normal;
+	font-weight: 700;
+	src: local('Enriqueta-Bold'), url('../fonts/enriqueta-bold.woff') format('woff');
+}
+@font-face {
+	font-family: 'Kelly Slab';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/kellyslab.eot');
+	src: local('Kelly Slab'), local('KellySlab-Regular'), url('../fonts/kellyslab.eot') format('embedded-opentype'), url('../fonts/kellyslab.woff') format('woff');
+}
+@font-face {
+	font-family: 'Enriqueta';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/enriqueta-regular.eot');
+	src: local('Enriqueta-Regular'), url('../fonts/enriqueta-regular.eot') format('embedded-opentype'), url('../fonts/enriqueta-regular.woff') format('woff');
+}
+@font-face {
+	font-family: 'Chelsea Market';
+	font-style: normal;
+	font-weight: 400;
+	src: url('../fonts/chelseamarket.eot');
+	src: local('Chelsea Market'), local('ChelseaMarket-Regular'), url('../fonts/chelseamarket.eot') format('embedded-opentype'), url('../fonts/chelseamarket.woff') format('woff');
+}
