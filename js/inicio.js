@@ -56,6 +56,7 @@ $(function() {
 		onPageChanged: function() {
 			$(".updates-list").mCustomScrollbar("update");
 			$(".updates-list").mCustomScrollbar("scrollTo", 0);
+			$(".updates-list").mCustomScrollbar("update"); // yeah, twice...
 		}
 	});
 
