@@ -371,6 +371,10 @@ html,body {
 	font-size: 20px;
 }
 
+.book .small {
+	font-size: 12px;
+}
+
 
 /* networks icons */
 .networks {
