@@ -338,7 +338,8 @@ html,body {
 .book-content { padding:30px 80px 30px 90px; }
 .book-page-wrapper { display:inline-block; height:496px; width:330px; vertical-align:top; overflow:hidden; }
 .book-page-wrapper:first-child { margin-right:70px; }
-.book-page { width:320px; padding-right:10px; text-align:justify; color:#441C08; font-size:16px; font-family:'Euphemia','Malgun Gothic','Kalinga','serif'; }
+.book-page { width:320px; padding-right:10px; text-align:justify; color:#441C08; font-size:16px; font-family:'Euphemia','Malgun Gothic','Kalinga','serif'; text-indent: 20px; }
+.book-splitted-continuation { text-indent: 0; }
 
 /* book content */
 .book .post-header,
@@ -371,9 +372,8 @@ html,body {
 	font-size: 20px;
 }
 
-.book .small {
-	font-size: 12px;
-}
+.book .small { font-size: 12px; }
+.book .nowrap { white-space: nowrap; }
 
 
 /* networks icons */

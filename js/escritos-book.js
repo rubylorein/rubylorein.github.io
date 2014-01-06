@@ -8,6 +8,37 @@ $(window).load(function() {
 		var pageNumbers = $(".book-nav .middle");
 
 		var source = $("#source");
+		var pattern = /(—[^\s]+)/;
+
+		function process(element) {
+			var node = element.firstChild;
+
+			while (node) {
+				if (node.nodeType === 3) {
+					var match = pattern.exec(node.nodeValue);
+
+					if (match) {
+						node = node.splitText(match.index);
+						node.splitText(match[0].length);
+
+						var span = $(document.createElement("span"));
+
+						span.addClass("nowrap");
+						span.text(node.nodeValue);
+
+						element.replaceChild(span[0], node);
+						node = span[0];
+					}
+				}
+				else {
+					process(node);
+				}
+
+				node = node.nextSibling;
+			}
+		}
+
+		process(source[0]);
 
 		// add links to post headers
 		source.find(".post-header").each(function() {
@@ -88,7 +119,7 @@ $(window).load(function() {
 				onPageChanged();
 				book.unbind("ready", gotoHash);
 			}
-			
+
 			if (bookWrapper.hasClass("processing"))
 				book.ready(gotoHash);
 			else

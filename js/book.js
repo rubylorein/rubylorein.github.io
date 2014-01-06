@@ -23,7 +23,7 @@
  *   with the new class. If you specify more than one class, the first one will be used as the
  *   prefix. For example, if you do `book.setClass("mybook crazy-style")`, the classes will look
  *   like `mybook`, `mybook-content`, `mybook-page-wrapper` and `mybook-page`.
- * 
+ *
  * Content structure
  *
  *   The content you append to the book should be an element where all its childrens are div
@@ -47,9 +47,9 @@
  *   </script>
  *
  * Paragraph classes
- * 
+ *
  *   The next classes are available to be used in paragraphs:
- * 
+ *
  *   - full-page: the paragraph takes a whole page.
  *   - middle: can be used with full-page to center vertically.
  *   - page-break: paragraph starts in a blank page.
@@ -59,6 +59,7 @@
  *   - dont-split: prevents the paragraph from splitting through different pages.
  *   - normalize: adds a bottom margin to match an height multiple of the normal line height.
  *   - dont-hyphenate: prevents hyphenation on current element and all descendants (can be used on any element).
+ *   - nowrap: can be used inside text to indicate that it won't wrap (should have white-space: nowrap)
  *
  * Sections
  *
@@ -142,7 +143,7 @@
  *   - ready(callback)
  *     Binds the `ready` event. This is triggered when the book content is ready (finished processing).
  *     The whole book should be available in the DOM.
- * 
+ *
  */
 
 (function() {
@@ -255,7 +256,7 @@ var CopyHandler = (function() {
 		}
 
 		// note: scroll is saved & restored because IE8 is shit
-		
+
 		var wnd = $(window);
 		var scrollTop = wnd.scrollTop();
 		var scrollLeft = wnd.scrollLeft();
@@ -327,7 +328,7 @@ var CopyHandler = (function() {
 		var wrapper = null;
 
 		// range before books
-		
+
 		currentRange = rangy.createRange();
 		currentRange.setStartBefore($("body")[0]);
 		currentRange.setEndBefore(books[0].dom()[0]);
@@ -343,7 +344,7 @@ var CopyHandler = (function() {
 
 		for (var i = 0; i < len; i++) {
 			// range intersecting book
-			
+
 			var dom = books[i].dom();
 			var contentDom = dom.children(":visible");
 			currentRange = rangy.createRange();
@@ -362,17 +363,17 @@ var CopyHandler = (function() {
 					if (extraChars) {
 						var node = getDeepestLastChild(this);
 						node.nodeValue = node.nodeValue.substr(0, node.nodeValue.length - extraChars);
-						
+
 						if (node.nodeValue[node.nodeValue.length - 1] === String.fromCharCode(173))
 							node.nodeValue += '-';
 
 						// when calling range.setStart and start node = end node, range gets collapsed, so store offsets before
 						var start = currentRange.startOffset;
 						var end = currentRange.endOffset;
-						
+
 						if (currentRange.startContainer === node)
 							currentRange.setStart(node, Math.min(start, node.nodeValue.length - 1));
-						
+
 						if (currentRange.endContainer === node)
 							currentRange.setEnd(node, Math.min(end, node.nodeValue.length - 1));
 					}
@@ -383,9 +384,9 @@ var CopyHandler = (function() {
 				wrapper.appendTo(container);
 				wrapper.find("*").andSelf().hyphenate(false);
 			}
-			
+
 			// range between two different books
-			
+
 			if (i < len - 1) {
 				currentRange = rangy.createRange();
 				currentRange.setStartAfter(dom[0]);
@@ -401,7 +402,7 @@ var CopyHandler = (function() {
 		}
 
 		// range after books
-		
+
 		currentRange = rangy.createRange();
 		currentRange.setStartAfter(books[len - 1].dom()[0]);
 		currentRange.setEndAfter($("body")[0]);
@@ -428,7 +429,7 @@ var CopyHandler = (function() {
 
 function Book() {
 	// private
-	
+
 	var className_ = "book";
 	var classPrefix_ = "book";
 	var dom_ = $("<div>").addClass(className_);
@@ -474,7 +475,7 @@ function Book() {
 			// be before adding the callbacks. Also, the timeout may never be
 			// called because it can get cleared, but in that case init should
 			// be called again so the cleared event will be triggered eventually.
-			
+
 			timerId_ = setTimeout(function() {
 				events_.triggerHandler("cleared");
 				timerId_ = setTimeout(process, 0);
@@ -534,7 +535,8 @@ function Book() {
 						wrapper.css("padding-top", padding + "px");
 					}
 
-					addPage();
+					if (paragraphIndex_ < paragraphs_.length - 1)
+						addPage();
 				}
 				else {
 					var shouldNormalize = paragraph.hasClass("normalize");
@@ -570,7 +572,7 @@ function Book() {
 
 							addPage();
 							isPageEmpty = true;
-							
+
 							if (paragraph === originalParagraph && !paragraph[0].hasChildNodes()) {
 								sectionPageIndex = pageIndex_;
 								sectionParagraph = leftover;
@@ -632,8 +634,10 @@ function Book() {
 			content.hide();
 			content.appendTo(dom_);
 
-			if (content.index() === currentIndex_)
-				content.show();
+			var i = currentIndex_ - content.first().index();
+
+			if (i >= 0 && i < content.length)
+				content.eq(i).show();
 		}
 
 		// paragraph must be already inserted in the DOM so it can be measured
@@ -662,6 +666,9 @@ function Book() {
 				if (paragraph[0].hasChildNodes()) {
 					paragraph.appendTo(page);
 					paragraph.addClass(classPrefix_ + "-splitted-paragraph");
+
+					if (leftover)
+						$(leftover).addClass(classPrefix_ + "-splitted-continuation");
 				}
 			}
 
@@ -702,6 +709,9 @@ function Book() {
 				return node;
 			}
 
+			if ($(node).hasClass("nowrap"))
+				return node.cloneNode(true);
+
 			var leftover = node.cloneNode(false);
 			var removedNodes = document.createDocumentFragment();
 			var bottom = 0;
@@ -714,7 +724,7 @@ function Book() {
 					var removedNode = node.removeChild(node.childNodes[splitIndex]);
 					removedNodes.appendChild(removedNode);
 				}
-				
+
 				if (fitsInPage(paragraph, page)) {
 					bottom = splitIndex;
 					node.appendChild(removedNodes);
@@ -727,11 +737,11 @@ function Book() {
 
 			if (node.lastChild) {
 				var innerLeftover = split(paragraph, page, node.lastChild);
-				
+
 				if (innerLeftover)
 					leftover.insertBefore(innerLeftover, leftover.firstChild);
 			}
-			
+
 			return leftover;
 		}
 
@@ -762,7 +772,7 @@ function Book() {
 					if (breakIndex === top)
 						breakIndex = -1;
 				}
-				
+
 				if (breakIndex === -1) {
 					breakIndex = strLastIndexOfAny(node.nodeValue, breakingChars, splitIndex - 1, bottom - 1);
 
@@ -776,7 +786,7 @@ function Book() {
 
 				var removedText = node.nodeValue.substr(splitIndex);
 				node.nodeValue = node.nodeValue.substr(0, splitIndex);
-				
+
 				if (fitsInPage(paragraph, page)) {
 					bottom = splitIndex;
 					node.nodeValue = node.nodeValue + removedText;
@@ -801,11 +811,11 @@ function Book() {
 			// this problem I measure the text again with a leading '-'. If the
 			// whole word overflows it gets added at the beginning of leftover.
 			// * Word can be a whole word or a part of it (broken on an hyphen).
-			
+
 			// If the node is empty and it's the first child, the node has to be
 			// removed to avoid an empty paragraph at the bottom of a page, which
 			// can lead to wrong section pointers.
-			
+
 			if (nodeLength > 0 || !isFirstChildDeep(node, paragraph[0])) {
 				// When using different font sizes the overflowing text might become visible.
 				// This will fix that.
@@ -823,7 +833,7 @@ function Book() {
 				if (!$.browser.opera && node.nodeValue[nodeLength - 1] === hyphen) {
 					var nodeText = node.nodeValue.substr(0, nodeLength - 1);
 					node.nodeValue = nodeText + '-';
-					
+
 					if (fitsInPage(paragraph, page)) {
 						node.nodeValue = nodeText + hyphen + firstWord;
 						paragraph.data("extra-chars", firstWordLength);
@@ -845,7 +855,7 @@ function Book() {
 			else {
 				node.parentNode.removeChild(node);
 			}
-			
+
 			return document.createTextNode(leftover);
 		}
 
@@ -898,7 +908,7 @@ function Book() {
 
 			var maxHeight = pageWrapper.height();
 			var height = text.height();
-			
+
 			while (height < maxHeight) {
 				result.height = height;
 				text.append("<br />&nbsp;");
@@ -947,7 +957,7 @@ function Book() {
 	})(); // bookBuilder
 
 	// public
-	
+
 	this.append = function(content) {
 		var children = $(content).children();
 		var len = children.length;
@@ -1050,7 +1060,7 @@ function Book() {
 	}
 
 	// event handling
-	
+
 	this.bind = function(eventType, callback) {
 		events_.bind(eventType, callback);
 	};
