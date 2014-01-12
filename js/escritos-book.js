@@ -8,6 +8,7 @@ $(window).load(function() {
 		var pageNumbers = $(".book-nav .middle");
 
 		var source = $("#source");
+		// var pattern = /(\S?—\S?)/;
 		var pattern = /(—[^\s]+)/;
 
 		function process(element) {
