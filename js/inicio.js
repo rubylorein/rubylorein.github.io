@@ -40,7 +40,7 @@ $(function() {
 			$item.append($date, $title, $text);
 
 			if (item.readmore)
-				$text.append(" ", $("<a>").addClass("readmore").attr("href", item.link).text("(Leer más)"));
+				$text.append(" ", $("<a>").addClass("readmore").attr("href", item.link).html("(Leer&nbsp;más)"));
 
 			return $item;
 		},

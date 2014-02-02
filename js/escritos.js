@@ -44,7 +44,7 @@ $(function() {
 				$lastUpdatedOrCompleted
 			);
 
-			$body.append(" ", $("<a>").addClass("readmore").attr("href", getLink(item["id"])).text("(Leer más)"));
+			$body.append(" ", $("<a>").addClass("readmore").attr("href", getLink(item["id"])).html("(Leer&nbsp;más)"));
 
 			return $item;
 		},
