@@ -13,7 +13,7 @@ $(function() {
 		body: $(".escritos .list"),
 		pages: $(".escritos .pages"),
 		maxPageNumbers: 9,
-		itemsPerPage: 3,
+		itemsPerPage: 10,
 		dataSource: "data/escritos/data-*.json",
 
 		createItem: function(index, item) {
