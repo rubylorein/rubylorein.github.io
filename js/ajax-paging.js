@@ -124,7 +124,7 @@ function AjaxPaging(params) {
 		}
 
 		for (var i = 0; i < itemsPerPage && index + i < itemsLen && index + i < size; i++) {
-			$body.append(createItem(index + i, items[index + i]));
+			$body.append(createItem(index + i, items[index + i], size));
 		}
 
 		onPageChanged();

@@ -16,7 +16,7 @@ $(function() {
 		itemsPerPage: 10,
 		dataSource: "data/escritos/data-*.json",
 
-		createItem: function(index, item) {
+		createItem: function(index, item, itemsCount) {
 			var $item = $("<div>").addClass("item");
 			var $image = $("<div>").addClass("item-image");
 			var $details = $("<div>").addClass("item-details");
@@ -36,7 +36,7 @@ $(function() {
 			}
 
 			$item.append($image, $details, $body);
-			$image.text(index + 1);
+			$image.text(itemsCount - index);
 			$body.text(item["text"]);
 			$details.append(
 				$("<h2>").append($("<a>").text(item["title"]).attr("href", getLink(item["id"]))),
