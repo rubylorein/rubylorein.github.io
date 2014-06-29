@@ -10,9 +10,6 @@ $(function() {
 		location.href = $("#el-libro").data('url');
 	});
 
-	// mark current section as selected in menu
-	$("#" + $(".menu").data("selected")).addClass("selected");
-
 	// mail
 	$(document).on("mouseenter", ".mailhref", function() {
 		var m = [[ 5, 'o'], [11, 'g'], [19, 'm'], [ 8, 'i'], [17, 'c'], [ 0, 'r'], [16, '.'], [ 9, 'n'],
