@@ -5,6 +5,7 @@ $(window).load(function() {
 		var prev = bookWrapper.find(".prev");
 		var topNext = $(".book-nav .right");
 		var topPrev = $(".book-nav .left");
+		var topLast = $(".book-nav .last");
 		var pageNumbers = $(".book-nav .middle");
 
 		var source = $("#source");
@@ -111,6 +112,11 @@ $(window).load(function() {
 
 		prev.add(topPrev).click(function() {
 			book.prev();
+			onPageChanged();
+		});
+
+		topLast.click(function() {
+			book.goto(topLast.data("href"));
 			onPageChanged();
 		});
 

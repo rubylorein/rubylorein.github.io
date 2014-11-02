@@ -298,11 +298,12 @@ html,body {
 .el-libro .comments { width:550px; margin:40px auto 0; }
 
 /* book navigation */
-.book-nav { margin:10px 40px 0; text-align:center; color:#544300; font-family:"Kelly Slab"; font-size:12px; }
+.book-nav { position:relative;; margin:25px 40px 0; text-align:center; color:#544300; font-family:"Kelly Slab"; font-size:12px; }
 .book-nav span { display:inline-block; margin:0 5px; }
-.book-nav .left, .book-nav .right { cursor:pointer; font-size:14px; }
-.book-nav .left:hover, .book-nav .right:hover { color:#A98700; }
+.book-nav .left, .book-nav .right, .book-nav .last { cursor:pointer; font-size:14px; }
+.book-nav .left:hover, .book-nav .right:hover, .book-nav .last:hover { color:#A98700; }
 .book-nav .disabled, .book-nav .disabled:hover { color:#AAA180; cursor:default; }
+.book-nav .last { position:absolute; right:0; top:0; }
 
 /* book */
 .book-wrapper { position:relative; width:900px; height:556px; margin:10px auto 6px; background:url('../images/book.jpg') no-repeat 0 0; }
