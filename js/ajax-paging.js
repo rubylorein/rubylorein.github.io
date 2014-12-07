@@ -108,11 +108,14 @@ function AjaxPaging(params) {
 			}).done(function(response) {
 				onRequestEnd();
 
-				var retrievedItems = response.items;
-				var len = retrievedItems.length;
+				if (itemsLen === items.length)
+				{
+					var retrievedItems = response.items;
+					var len = retrievedItems.length;
 
-				for (var i = 0; i < len; i++) {
-					items.push(retrievedItems[i]);
+					for (var i = 0; i < len; i++) {
+						items.push(retrievedItems[i]);
+					}
 				}
 
 				self.setPage(page);
