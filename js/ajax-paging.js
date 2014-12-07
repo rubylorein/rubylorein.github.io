@@ -108,17 +108,16 @@ function AjaxPaging(params) {
 			}).done(function(response) {
 				onRequestEnd();
 
-				if (itemsLen === items.length)
-				{
+				if (itemsLen === items.length) {
 					var retrievedItems = response.items;
 					var len = retrievedItems.length;
 
 					for (var i = 0; i < len; i++) {
 						items.push(retrievedItems[i]);
 					}
-				}
 
-				self.setPage(page);
+					self.setPage(page);
+				}
 			}).fail(function() {
 				setTimeout(function() { self.setPage(page); }, 1000);
 			});
