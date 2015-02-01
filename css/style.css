@@ -259,7 +259,7 @@ html,body {
 .escritos .item { padding:40px 0; font-family:"Enriqueta","serif"; }
 .escritos .item > div { display:inline-block; vertical-align:middle; }
 .escritos .item-image { width:100px; color:#544300; text-align:center; font-size:60px; font-weight:bold; font-family:"Kelly Slab","serif"; }
-.escritos .item-details { width:270px; color:#441C08; font-size:12px; }
+.escritos .item-details { width:230px; padding-right:40px; color:#441C08; font-size:12px; }
 .escritos .item h2 { color:#A98700; font-size:19px; font-family:"Kelly Slab","serif"; margin-bottom:10px; text-transform:uppercase; }
 .escritos .item a { color:#A98700; }
 .escritos .item-details b { color:#544300; }
