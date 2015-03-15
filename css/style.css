@@ -201,7 +201,7 @@ html,body {
 .inicio .update { margin-bottom:25px; }
 .inicio h1 { color:#544300; font-size:28px; font-weight:normal; margin-bottom:30px; }
 .inicio h2, .inicio h2 a, .inicio .date:before { color:#A98700; font-size:16px; font-weight:normal; margin-bottom:5px; }
-.inicio .updates p { /*white-space:nowrap; text-overflow:ellipsis; overflow:hidden;*/ margin-bottom:10px; text-align:justify; }
+.inicio .updates p { white-space:pre-line; margin-bottom:10px; text-align:justify; }
 .inicio .date { float:right; }
 .inicio .date:before { content:""; vertical-align:middle; }
 .inicio .date b { display:inline-block; color:#D3B643; font-size:14px; font-weight:normal; }
